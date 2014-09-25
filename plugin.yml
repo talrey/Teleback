@@ -1,0 +1,19 @@
+name: TeleBack
+version: a.0 for 1.7.10
+author: Morios / Mark Talrey
+description: Return from whence ye came! Well, if ye came by using /tp, and want to go back.
+
+main: teleback.TelebackPlugin
+
+commands:
+  back:
+    description: Returns you to the place you were before your last /tp.
+    usage: "/back"
+  test:
+    description: this is a debug command. Don't dead, open inside.
+    usage: "/test"
+
+permissions:
+  TelebackPlugin.back:
+    description: Permits a player to use /back. Defaults to admins-only.
+    default: op
