@@ -9,9 +9,9 @@ commands:
   back:
     description: Returns you to the place you were before your last /tp.
     usage: "/back"
-  test:
-    description: this is a debug command. Don't dead, open inside.
-    usage: "/test"
+#  test:
+#    description: this is a debug command. Don't dead, open inside.
+#    usage: "/test"
 
 permissions:
   TelebackPlugin.back:

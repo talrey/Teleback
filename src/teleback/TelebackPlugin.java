@@ -7,21 +7,11 @@
 
 package teleback;
 
-//import java.io.FileInputStream;
-//import java.io.ObjectInputStream;
-//import java.io.FileOutputStream;
-//import java.io.ObjectOutputStream;
-
-//import java.util.Arrays;
-//import java.util.ArrayList;
 import java.util.HashMap;
-//import java.util.Set;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-//import org.bukkit.OfflinePlayer;
-//import org.bukkit.World;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,7 +22,6 @@ import org.bukkit.entity.Player;
 
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
-//import org.bukkit.event.block.*;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
 public final class TelebackPlugin extends JavaPlugin
@@ -43,12 +32,12 @@ public final class TelebackPlugin extends JavaPlugin
 	public boolean onCommand (CommandSender sender, Command cmd, String label, String[] args)
 	{
 		boolean ret = true;
-		
+		/*
 		if (cmd.getName().equals("test"))
 		{
 			ret = testFunction(args, sender);
 		}
-		else if (cmd.getName().equals("back"))
+		else*/ if (cmd.getName().equals("back"))
 		{
 			if (sender instanceof Player)
 			{
