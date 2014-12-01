@@ -69,7 +69,7 @@ public final class TelebackPlugin extends JavaPlugin
 	
 	private boolean testFunction (String[] args, CommandSender sender)
 	{
-		sender.sendMessage("arbl");
+		sender.sendMessage("you shouldn't see this.");
 		return true;
 	}
 	
@@ -89,9 +89,10 @@ public final class TelebackPlugin extends JavaPlugin
 		@EventHandler
 		public void detectTeleport (PlayerTeleportEvent e)
 		{
-			if (e.getCause().equals(PlayerTeleportEvent.TeleportCause.COMMAND))
+			if (e.getCause().equals(PlayerTeleportEvent.TeleportCause.COMMAND)
+				|| e.getCause().equals(PlayerTeleportEvent.TeleportCause.PLUGIN) )
 			{
-				Bukkit.getLogger().info("teleport issued!");
+				//Bukkit.getLogger().info("teleport issued!");
 				backList.put(e.getPlayer().getUniqueId(),e.getPlayer().getLocation());
 			}
 		}
