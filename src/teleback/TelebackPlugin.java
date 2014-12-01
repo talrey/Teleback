@@ -48,8 +48,9 @@ public final class TelebackPlugin extends JavaPlugin
 					if (dest != null)
 					{
 						backList.put(pl.getUniqueId(), pl.getLocation());
-						String com = "tp " + dest.getX() + " " + dest.getY() + " " + dest.getZ();
-						ret = pl.performCommand(com);
+						ret = pl.teleport(dest);
+						//String com = "tp " + dest.getX() + " " + dest.getY() + " " + dest.getZ();
+						//ret = pl.performCommand(com);
 					}
 					else
 					{
@@ -90,6 +91,7 @@ public final class TelebackPlugin extends JavaPlugin
 		{
 			if (e.getCause().equals(PlayerTeleportEvent.TeleportCause.COMMAND))
 			{
+				Bukkit.getLogger().info("teleport issued!");
 				backList.put(e.getPlayer().getUniqueId(),e.getPlayer().getLocation());
 			}
 		}
