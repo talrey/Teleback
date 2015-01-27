@@ -2,7 +2,7 @@
  * TelebackPlugin.java
  * back-teleporting plugin for the Arcane Survival server.
  * @author Morios (Mark Talrey)
- * @version a.0 for Minecraft 1.7.10
+ * @version 1.3 for Minecraft 1.8.*
  */
 
 package teleback;
@@ -90,10 +90,16 @@ public final class TelebackPlugin extends JavaPlugin
 		public void detectTeleport (PlayerTeleportEvent e)
 		{
 			if (e.getCause().equals(PlayerTeleportEvent.TeleportCause.COMMAND)
-				|| e.getCause().equals(PlayerTeleportEvent.TeleportCause.PLUGIN) )
+				|| e.getCause().equals(PlayerTeleportEvent.TeleportCause.PLUGIN)
+				|| e.getCause().equals(PlayerTeleportEvent.TeleportCause.UNKNOWN) )
 			{
 				//Bukkit.getLogger().info("teleport issued!");
-				backList.put(e.getPlayer().getUniqueId(),e.getPlayer().getLocation());
+				backList.put(e.getPlayer().getUniqueId(),e.getFrom());
+			}
+			else
+			{
+				//Bukkit.getLogger().info(
+				//	"[Teleback]: Teleport by " + e.getCause() + "isn't handled for /back");
 			}
 		}
 	}

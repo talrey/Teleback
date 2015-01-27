@@ -6,4 +6,4 @@ Allows a player to return to their previous location after a /tp use.
 
 Author: "Morios" Mark Talrey
 
-Current Version: a.1 for Minecraft 1.7.10
+Current Version: 1.3 for Minecraft 1.8.*
