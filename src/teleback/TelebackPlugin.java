@@ -2,7 +2,7 @@
  * TelebackPlugin.java
  * back-teleporting plugin for the Arcane Survival server.
  * @author Morios (Mark Talrey)
- * @version 1.3 for Minecraft 1.8.*
+ * @version 1.4 for Minecraft 1.8.*
  */
 
 package teleback;
