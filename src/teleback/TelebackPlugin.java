@@ -22,7 +22,9 @@ import org.bukkit.entity.Player;
 
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 public final class TelebackPlugin extends JavaPlugin
 {
@@ -86,20 +88,24 @@ public final class TelebackPlugin extends JavaPlugin
 	
 	public final class BackListener implements Listener
 	{
-		@EventHandler
-		public void detectTeleport (PlayerTeleportEvent e)
+		@EventHandler (priority = EventPriority.HIGH)
+		public void detectTeleport (PlayerCommandPreprocessEvent pcpe)
 		{
-			if (e.getCause().equals(PlayerTeleportEvent.TeleportCause.COMMAND)
-				|| e.getCause().equals(PlayerTeleportEvent.TeleportCause.PLUGIN)
-				|| e.getCause().equals(PlayerTeleportEvent.TeleportCause.UNKNOWN) )
+			String msg = pcpe.getMessage();
+			if (msg.startsWith("/home") || msg.startsWith("/tp"))
 			{
 				//Bukkit.getLogger().info("teleport issued!");
-				backList.put(e.getPlayer().getUniqueId(),e.getFrom());
+				backList.put(pcpe.getPlayer().getUniqueId(),pcpe.getPlayer().getLocation());
+			}
+			else if (msg.startsWith("/back"))
+			{
+				// catch, do nothing
 			}
 			else
 			{
 				//Bukkit.getLogger().info(
-				//	"[Teleback]: Teleport by " + e.getCause() + "isn't handled for /back");
+				//	"[Teleback]: Teleport by this cause isn't handled for /back");
+				//Bukkit.getLogger().info(msg);
 			}
 		}
 	}
