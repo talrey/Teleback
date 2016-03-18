@@ -2,7 +2,7 @@
  * TelebackPlugin.java
  * back-teleporting plugin for the Arcane Survival server.
  * @author Morios (Mark Talrey)
- * @version 1.5 for Minecraft 1.9.0
+ * @version 1.6 for Minecraft 1.9.0
  */
 
 package teleback;
@@ -24,7 +24,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerTeleportEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
 public final class TelebackPlugin extends JavaPlugin
 {
@@ -49,7 +48,7 @@ public final class TelebackPlugin extends JavaPlugin
 					Location dest = backList.get(pl.getUniqueId());
 					if (dest != null)
 					{
-						backList.put(pl.getUniqueId(), pl.getLocation());
+						//backList.put(pl.getUniqueId(), pl.getLocation());
 						ret = pl.teleport(dest);
 						//String com = "tp " + dest.getX() + " " + dest.getY() + " " + dest.getZ();
 						//ret = pl.performCommand(com);
@@ -89,24 +88,13 @@ public final class TelebackPlugin extends JavaPlugin
 	public final class BackListener implements Listener
 	{
 		@EventHandler (priority = EventPriority.HIGH)
-		public void detectTeleport (PlayerCommandPreprocessEvent pcpe)
+		public void detectTeleport (PlayerTeleportEvent pte)
 		{
-			String msg = pcpe.getMessage().toLowerCase();
-			if (msg.startsWith("/home") || msg.startsWith("/tp") || msg.equals("/spawn"))
+			if ( (pte.getCause().equals(PlayerTeleportEvent.TeleportCause.COMMAND))
+			|| (pte.getCause().equals(PlayerTeleportEvent.TeleportCause.PLUGIN))
+			|| (pte.getCause().equals(PlayerTeleportEvent.TeleportCause.UNKNOWN)) ) // handle mystery meat
 			{
-				//Bukkit.getLogger().info("teleport issued!");
-				backList.put(pcpe.getPlayer().getUniqueId(),pcpe.getPlayer().getLocation());
-			}
-			else if (msg.startsWith("/back"))
-			{
-				// catch, do nothing
-			}
-			else
-			{
-				Bukkit.getLogger().info(
-					"[Teleback]: Teleport by this cause isn't handled for /back: "
-					+ "\"" + msg + "\""
-				);
+				backList.put(pte.getPlayer().getUniqueId(),pte.getFrom());
 			}
 		}
 	}
